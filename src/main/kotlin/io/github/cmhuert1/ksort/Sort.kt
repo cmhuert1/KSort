@@ -1,20 +1,16 @@
 package io.github.cmhuert1.ksort
 
 object Sort {
-    fun quickSort(arr: Array<Int>): Array<Int> {
-        val a = quickSort(arr, 0, arr.size - 1)
-        return a
+    fun quickSort(arr: Array<Int>) {
+        quickSort(arr, 0, arr.size - 1)
     }
 
-    private fun quickSort(arr: Array<Int>, low: Int, high: Int): Array<Int> {
+    private fun quickSort(arr: Array<Int>, low: Int, high: Int) {
         if (low < high) {
             val pi = partition(arr, low, high)
             quickSort(arr, low, pi - 1)
             quickSort(arr, pi + 1, high)
-
-
         }
-        return arr
     }
 
     private fun partition(arr: Array<Int>, low: Int, high: Int): Int {
@@ -36,7 +32,7 @@ object Sort {
         return i + 1
     }
 
-    fun buubleSort(arr: Array<Int>): Array<Int> {
+    fun bubbleSort(arr: Array<Int>) {
         for (i in arr.indices) {
             for (j in 0 until arr.size - i - 1) {
                 if (arr[j] > arr[j + 1]) {
@@ -46,12 +42,10 @@ object Sort {
                 }
             }
         }
-        return arr
     }
 
-    fun mergeSort(arr: Array<Int>): Array<Int> {
+    fun mergeSort(arr: Array<Int>) {
         mergeSort(arr, 0, arr.size - 2)
-        return arr
     }
 
     private fun mergeSort(arr: Array<Int>, l: Int, r: Int) {
@@ -111,10 +105,17 @@ object Sort {
         }
     }
 
-//    fun insertionSort(arr: Array<Int>) {
-//        for (i in 1 until arr.size-1) {
-//            val key = arr[i]
-//
-//        }
-//    }
+    fun insertionSort(arr: Array<Int>) {
+        for (i in 1 until arr.size-1) {
+            val key = arr[i]
+            var j = i-1
+
+            while(j >=0 && arr[j] >- key) {
+                arr[j+1] = arr[j]
+                j--
+            }
+
+            arr[j+1] = key
+        }
+    }
 }
