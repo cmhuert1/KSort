@@ -1,5 +1,7 @@
 package io.github.cmhuert1
 import io.github.cmhuert1.ksort.Sort
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
 import java.util.*
 import kotlin.system.measureTimeMillis
 
@@ -7,25 +9,20 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val r = Random()
-        val arr = arrayOfNulls<Int?>(1000)
-        for (i in 0 until arr.size) {
-            arr[i] = r.nextInt()%600
+        val arrBubbleSort = arrayOfNulls<Int?>(10)
+        for (i in arrBubbleSort.indices) {
+            arrBubbleSort[i] = r.nextInt() % 600
         }
-        val quickSortTime = measureTimeMillis {
-            Sort.quickSort(arr.requireNoNulls())
+        val arrQuickSort = arrBubbleSort.copyOf()
+        val bubblesort = async { Sort.bubbleSort(arrBubbleSort.requireNoNulls()) }
+        val quicksort = async { Sort.quickSort(arrQuickSort.requireNoNulls()) }
+
+        runBlocking {
+            bubblesort.await()
+            quicksort.await()
+            arrQuickSort.forEach { print("$it ") }
+            println()
+            arrBubbleSort.forEach { print("$it ") }
         }
-
-        val bubbleSortTime = measureTimeMillis {
-            Sort.buubleSort(arr.requireNoNulls())
-        }
-
-        val mergeSortTime = measureTimeMillis {
-            Sort.mergeSort(arr.requireNoNulls())
-        }
-
-        println("Quick KSort.Sort Time: $quickSortTime\n" +
-                "Bubble KSort.Sort Time: $bubbleSortTime\n" +
-                "Merge KSort.Sort Time: $mergeSortTime")
-
     }
 }
