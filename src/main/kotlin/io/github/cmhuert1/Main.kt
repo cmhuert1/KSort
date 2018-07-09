@@ -1,10 +1,11 @@
+package io.github.cmhuert1
+import io.github.cmhuert1.ksort.Sort
 import java.util.*
 import kotlin.system.measureTimeMillis
 
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        println("hi")
         val r = Random()
         val arr = arrayOfNulls<Int?>(1000)
         for (i in 0 until arr.size) {
@@ -22,9 +23,9 @@ object Main {
             Sort.mergeSort(arr.requireNoNulls())
         }
 
-        println("Quick Sort Time: $quickSortTime\n" +
-                "Bubble Sort Time: $bubbleSortTime\n" +
-                "Merge Sort Time: $mergeSortTime")
+        println("Quick KSort.Sort Time: $quickSortTime\n" +
+                "Bubble KSort.Sort Time: $bubbleSortTime\n" +
+                "Merge KSort.Sort Time: $mergeSortTime")
 
     }
 }

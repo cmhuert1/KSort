@@ -1,3 +1,5 @@
+package io.github.cmhuert1.ksort
+
 object Sort {
     fun quickSort(arr: Array<Int>): Array<Int> {
         val a = quickSort(arr, 0, arr.size - 1)
@@ -57,7 +59,7 @@ object Sort {
             // Find middle point
             val m = (l + r) / 2
 
-            // Sort first and second halves
+            // KSort.Sort first and second halves
             mergeSort(arr, l, m)
             mergeSort(arr, m + 1, r)
 
@@ -109,10 +111,10 @@ object Sort {
         }
     }
 
-    fun insertionSort(arr: Array<Int>) {
-        for (i in 1 until arr.size-1) {
-            val key = arr[i]
-            
-        }
-    }
+//    fun insertionSort(arr: Array<Int>) {
+//        for (i in 1 until arr.size-1) {
+//            val key = arr[i]
+//
+//        }
+//    }
 }
