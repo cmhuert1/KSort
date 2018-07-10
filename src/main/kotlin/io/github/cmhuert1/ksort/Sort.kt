@@ -45,7 +45,7 @@ object Sort {
     }
 
     fun mergeSort(arr: Array<Int>) {
-        mergeSort(arr, 0, arr.size - 2)
+        mergeSort(arr, 0, arr.size - 1)
     }
 
     private fun mergeSort(arr: Array<Int>, l: Int, r: Int) {
@@ -61,7 +61,8 @@ object Sort {
             merge(arr, l, m, r)
         }
     }
-    private fun merge(arr: Array<Int>, l:Int, m:Int, r:Int) {
+
+    private fun merge(arr: Array<Int>, l: Int, m: Int, r: Int) {
         val n1 = m - l + 1
         val n2 = r - m
 
@@ -70,10 +71,10 @@ object Sort {
         val R = arrayOfNulls<Int>(n2)
 
         for (i in L.indices) {
-           L[i] = arr[l+i]
+            L[i] = arr[l + i]
         }
         for (i in R.indices) {
-            R[i] = arr[m+1+i]
+            R[i] = arr[m + 1 + i]
         }
 
         // Merge temp arrays
@@ -81,24 +82,24 @@ object Sort {
         var j = 0
         var k = l
 
-        while(i < n1 && j<n2) {
-            if(L[i]!! <= R[j]!!) {
+        while (i < n1 && j < n2) {
+            if (L[i]!! <= R[j]!!) {
                 arr[k] = L[i]!!
                 i++
-           } else {
+            } else {
                 arr[k] = R[j]!!
                 j++
             }
             k++
         }
 
-        while(i<n1) {
+        while (i < n1) {
             arr[k] = L[i]!!
             i++
             k++
         }
 
-        while (j<n2) {
+        while (j < n2) {
             arr[k] = R[j]!!
             j++
             k++
@@ -106,16 +107,17 @@ object Sort {
     }
 
     fun insertionSort(arr: Array<Int>) {
-        for (i in 1 until arr.size-1) {
-            val key = arr[i]
-            var j = i-1
 
-            while(j >=0 && arr[j] >- key) {
-                arr[j+1] = arr[j]
-                j--
+        for (i in 1 until arr.size) {
+            val key = arr[i]
+            var j = i - 1
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j]
+                j -= 1
             }
 
-            arr[j+1] = key
+            arr[j + 1] = key
         }
     }
 }
